@@ -238,9 +238,8 @@ with st.form("form_missionarios", clear_on_submit=True):
     # ── Consentimento ─────────────────────────────────────────────────────────
     st.markdown("")
     consentimento = st.checkbox(
-        "Autorizo que a equipe de missões entre em contato comigo pelo WhatsApp/e-mail informados "
-        "para coordenar os serviços. Meus dados serão usados exclusivamente pelo Serviço de Missões "
-        "e Evangelismo da IP Redenção, conforme a LGPD."
+        "Autorizo que a equipe do Serviço de Missões e Evangelismo (SME) entre em contato comigo pelo WhatsApp/e-mail informados "
+        "para coordenar os serviços. Meus dados serão usados exclusivamente pelo SME da IP Redenção, conforme a LGPD."
     )
 
     st.markdown(
@@ -290,7 +289,7 @@ if enviado:
             st.balloons()
             st.success(
                 "✅ **Obrigado pela sua oferta!** Que Deus abençoe imensamente o seu coração generoso. "
-                "A equipe de missões entrará em contato em breve."
+                "A equipe do SME entrará em contato em breve."
             )
             with st.expander("Ver resumo do que você ofereceu"):
                 for categoria, servicos in [
