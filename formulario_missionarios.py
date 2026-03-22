@@ -29,7 +29,7 @@ st.markdown("""
 # ── Cabeçalho ────────────────────────────────────────────────────────────────
 col_logo, col_titulo = st.columns([1, 5])
 with col_logo:
-    st.image("logoIPR.png", width=100)
+    st.image("logoIPR.png", width=200)
 with col_titulo:
     st.markdown("## Igreja Presbiteriana Redenção – Brasília")
 st.title("Oferta de Dons e Serviços aos Missionários")
