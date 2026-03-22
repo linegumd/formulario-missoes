@@ -94,7 +94,6 @@ with st.form("form_missionarios", clear_on_submit=True):
         ("Consulta odontológica",              "presencial"),
         ("Tratamento odontológico",            "presencial"),
         ("Consulta médica",                    "presencial"),
-        ("Consulta por telemedicina",          "distância"),
         ("Psicologia / aconselhamento",        "ambos"),
         ("Fisioterapia",                       "presencial"),
         ("Nutrição / orientação alimentar",    "ambos"),
@@ -179,7 +178,6 @@ with st.form("form_missionarios", clear_on_submit=True):
         ("Direito trabalhista / previdenciário",     "ambos"),
         ("Contabilidade / declaração de IR",         "ambos"),
         ("Planejamento financeiro pessoal",          "ambos"),
-        ("Abertura / gestão de MEI ou empresa",      "ambos"),
         ("Assessoria em investimentos",              "ambos"),
         ("Auxílio com visto / imigração",            "ambos"),
         ("Tradução juramentada de documentos",       "ambos"),
@@ -202,7 +200,7 @@ with st.form("form_missionarios", clear_on_submit=True):
         ("Cartas / mensagens de encorajamento",     "distância"),
         ("Discipulado / mentoria",                  "ambos"),
         ("Apoio aos filhos em grupo de jovens",     "presencial"),
-        ("Visita pastoral em campo (se viável)",    "presencial"),
+        ("Visita em campo (se viável)",    "presencial"),
         ("Grupos de oração online",                 "distância"),
     ]
     esp_cols = st.columns(2)
