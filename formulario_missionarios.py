@@ -27,7 +27,11 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ── Cabeçalho ────────────────────────────────────────────────────────────────
-st.markdown("## ✝️ Igreja Presbiteriana Redenção – Brasília")
+col_logo, col_titulo = st.columns([1, 5])
+with col_logo:
+    st.image("logo.png", width=100)
+with col_titulo:
+    st.markdown("## Igreja Presbiteriana Redenção – Brasília")
 st.title("Oferta de Dons e Serviços aos Missionários")
 st.markdown(
     "Registre os dons e serviços que você pode oferecer aos missionários e suas "
@@ -86,7 +90,7 @@ with st.form("form_missionarios", clear_on_submit=True):
     whatsapp  = c2.text_input("Telefone / WhatsApp *")
     c3, c4 = st.columns(2)
     email     = c3.text_input("E-mail")
-    celula    = c4.text_input("Congregação / Célula")
+    celula    = c4.text_input("Igreja")
 
     # ── 2. Saúde e bem-estar ─────────────────────────────────────────────────
     st.markdown("### 🏥 Saúde e bem-estar")
@@ -171,7 +175,31 @@ with st.form("form_missionarios", clear_on_submit=True):
             if st.checkbox(label, key=f"dom_{i}"):
                 dom_sel.append(label)
 
-    # ── 6. Apoio espiritual ──────────────────────────────────────────────────
+    # ── 6. Assessoria jurídica, financeira e administrativa ─────────────────
+    st.markdown("### ⚖️ Assessoria jurídica, financeira e administrativa")
+    jur_itens = [
+        ("Advocacia / orientação jurídica",          "ambos"),
+        ("Direito de família / documentação",        "ambos"),
+        ("Direito trabalhista / previdenciário",     "ambos"),
+        ("Contabilidade / declaração de IR",         "ambos"),
+        ("Planejamento financeiro pessoal",          "ambos"),
+        ("Abertura / gestão de MEI ou empresa",      "ambos"),
+        ("Assessoria em investimentos",              "ambos"),
+        ("Auxílio com visto / imigração",            "ambos"),
+        ("Tradução juramentada de documentos",       "ambos"),
+        ("Gestão de bens / imóveis à distância",     "distância"),
+        ("Seguros (saúde, vida, residencial)",       "ambos"),
+        ("Orientação em compras / importação",       "ambos"),
+    ]
+    jur_cols = st.columns(2)
+    jur_sel = []
+    for i, (label, tag) in enumerate(jur_itens):
+        with jur_cols[i % 2]:
+            if st.checkbox(label, key=f"jur_{i}"):
+                jur_sel.append(label)
+    jur_obs = st.text_input("Especialidade ou área de atuação (jurídica/financeira)", placeholder="Ex: direito tributário, planejamento de aposentadoria...")
+
+    # ── 7. Apoio espiritual e pastoral ──────────────────────────────────────
     st.markdown("### 🙏 Apoio espiritual e pastoral")
     esp_itens = [
         ("Intercessão regular pelo missionário",    "distância"),
@@ -188,7 +216,7 @@ with st.form("form_missionarios", clear_on_submit=True):
             if st.checkbox(label, key=f"esp_{i}"):
                 esp_sel.append(label)
 
-    # ── 7. Disponibilidade ───────────────────────────────────────────────────
+    # ── 8. Disponibilidade ───────────────────────────────────────────────────
     st.markdown("### 📅 Disponibilidade")
     periodos_opcoes = [
         "Qualquer época do ano",
@@ -205,7 +233,7 @@ with st.form("form_missionarios", clear_on_submit=True):
         ["", "Somente presencial (em Brasília)", "Somente à distância (online)", "Ambas as modalidades"],
     )
 
-    # ── 8. Observações finais ─────────────────────────────────────────────────
+    # ── 9. Observações finais ─────────────────────────────────────────────────
     st.markdown("### 💬 Observações")
     obs_gerais = st.text_area(
         "Outros dons, serviços ou informações que deseja compartilhar",
@@ -237,27 +265,29 @@ if enviado:
         st.warning("É necessário autorizar o contato para enviar o formulário.")
     else:
         todos_servicos = (
-            saude_sel + educ_sel + hosp_sel + dom_sel + esp_sel
+            saude_sel + educ_sel + hosp_sel + dom_sel + jur_sel + esp_sel
         )
 
         dados = {
-            "Data/Hora":            datetime.now().strftime("%d/%m/%Y %H:%M"),
-            "Nome":                 nome,
-            "WhatsApp":             whatsapp,
-            "E-mail":               email,
-            "Célula/Congregação":   celula,
-            "Saúde":                "; ".join(saude_sel),
-            "Saúde – obs":          saude_obs,
-            "Educação/Idiomas":     "; ".join(educ_sel),
-            "Educação – obs":       educ_obs,
-            "Hospedagem":           "; ".join(hosp_sel),
-            "Hospedagem – obs":     hosp_obs,
-            "Serviços domésticos":  "; ".join(dom_sel),
-            "Apoio espiritual":     "; ".join(esp_sel),
-            "Disponibilidade":      "; ".join(periodos),
-            "Modalidade":           modalidade,
-            "Observações gerais":   obs_gerais,
-            "Total de serviços":    len(todos_servicos),
+            "Data/Hora":                datetime.now().strftime("%d/%m/%Y %H:%M"),
+            "Nome":                     nome,
+            "WhatsApp":                 whatsapp,
+            "E-mail":                   email,
+            "Igreja":                       celula,
+            "Saúde":                    "; ".join(saude_sel),
+            "Saúde – obs":              saude_obs,
+            "Educação/Idiomas":         "; ".join(educ_sel),
+            "Educação – obs":           educ_obs,
+            "Hospedagem":               "; ".join(hosp_sel),
+            "Hospedagem – obs":         hosp_obs,
+            "Serviços domésticos":      "; ".join(dom_sel),
+            "Jurídico/Financeiro":      "; ".join(jur_sel),
+            "Jurídico/Financeiro – obs": jur_obs,
+            "Apoio espiritual":         "; ".join(esp_sel),
+            "Disponibilidade":          "; ".join(periodos),
+            "Modalidade":               modalidade,
+            "Observações gerais":       obs_gerais,
+            "Total de serviços":        len(todos_servicos),
         }
 
         ok = salvar_no_sheets(dados)
@@ -272,7 +302,7 @@ if enviado:
                 for categoria, servicos in [
                     ("Saúde", saude_sel), ("Educação/Idiomas", educ_sel),
                     ("Hospedagem", hosp_sel), ("Domésticos", dom_sel),
-                    ("Espiritual", esp_sel),
+                    ("Jurídico/Financeiro", jur_sel), ("Espiritual", esp_sel),
                 ]:
                     if servicos:
                         st.markdown(f"**{categoria}:** {', '.join(servicos)}")
