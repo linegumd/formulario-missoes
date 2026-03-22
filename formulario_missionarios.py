@@ -27,11 +27,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ── Cabeçalho ────────────────────────────────────────────────────────────────
-col_logo, col_titulo = st.columns([1, 5])
-with col_logo:
-    st.image("logoIPR.png", width=200)
-with col_titulo:
-    st.markdown("## Igreja Presbiteriana Redenção – Brasília")
+st.image("logoIPR.png", width=400)
 st.title("Oferta de Dons e Serviços aos Missionários")
 st.markdown(
     "Registre os dons e serviços que você pode oferecer aos missionários e suas "
