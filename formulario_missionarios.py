@@ -7,7 +7,7 @@ import json
 # ── Configuração da página ──────────────────────────────────────────────────
 st.set_page_config(
     page_title="Oferta de Dons e Serviços – IP Redenção",
-    page_icon="✝️",
+    page_icon="logoIPR.png",
     layout="centered",
 )
 
